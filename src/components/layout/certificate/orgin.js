@@ -76,10 +76,10 @@ const CertificateOfOriginInput = () => {
     doc.rect(0, 0, pageWidth, 8, "F");
 
     // --- LOGO AT TOP LEFT (with proper spacing) ---
-    const logoWidth = 70; // Reduced width for better fit
-    const logoHeight = 40; // Reduced height for better fit
+    const logoWidth = 60; // Reduced width for better fit
+    const logoHeight = 50; // Reduced height for better fit
     const logoX = margin;
-    const logoY = 25; // Increased Y position to avoid overlap
+    const logoY = 15; // Increased Y position to avoid overlap
 
     // Add the logo
     try {
