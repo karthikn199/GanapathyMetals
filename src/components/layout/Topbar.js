@@ -14,6 +14,7 @@ import {
 } from "react-icons/fi";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
+import logo from '../../assets/images/Ganapathy_metals_logo.png';
 
 export default function Topbar({ user }) {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -131,36 +132,27 @@ export default function Topbar({ user }) {
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className={`bg-white/90 backdrop-blur-xl border-b transition-all duration-300 sticky top-0 z-50 ${
-        scrolled
-          ? "border-gray-200/70 shadow-lg"
-          : "border-gray-200/30 shadow-sm"
-      }`}
+      className={`bg-white/90 backdrop-blur-xl border-b transition-all duration-300 sticky top-0 z-50 ${scrolled
+        ? "border-gray-200/70 shadow-lg"
+        : "border-gray-200/30 shadow-sm"
+        }`}
     >
       <div className="px-4 sm:px-6 lg:px-8">
         {/* Desktop Navigation */}
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <motion.div
-            className="flex items-center group cursor-pointer"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <motion.div
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-              className="relative"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full blur-sm opacity-75 group-hover:opacity-100 transition-opacity"></div>
-              <FiSend className="relative w-6 h-6 text-white transform rotate-45 z-10" />
-            </motion.div>
+          <div className="flex items-center cursor-pointer">
+            <div className="relative">
+              <img
+                src={logo}
+                alt="Ganapathy Metal Logo"
+                className="w-12 h-12 object-contain" // adjust size as needed
+              />
+            </div>
             <div className="ml-3">
-              <motion.h1
-                className="text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent"
-                whileHover={{ scale: 1.05 }}
-              >
+              <h1 className="text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
                 Ganapathy Metal
-              </motion.h1>
+              </h1>
               <p className="text-xs font-medium text-gray-500">
                 Powered by{" "}
                 <span className="bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent font-bold">
@@ -168,7 +160,7 @@ export default function Topbar({ user }) {
                 </span>
               </p>
             </div>
-          </motion.div>
+          </div>
 
           {/* Centered Navigation */}
           <nav className="hidden md:flex mx-auto">
@@ -186,10 +178,9 @@ export default function Topbar({ user }) {
                     to={item.path}
                     end={item.exact}
                     className={({ isActive }) =>
-                      `relative flex items-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 z-10 ${
-                        isActive
-                          ? "text-white"
-                          : "text-gray-600 hover:text-gray-900"
+                      `relative flex items-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 z-10 ${isActive
+                        ? "text-white"
+                        : "text-gray-600 hover:text-gray-900"
                       }`
                     }
                   >
@@ -207,14 +198,14 @@ export default function Topbar({ user }) {
                           location.pathname === item.path
                             ? 1
                             : activeHover === index
-                            ? 1
-                            : 0,
+                              ? 1
+                              : 0,
                         opacity:
                           location.pathname === item.path
                             ? 1
                             : activeHover === index
-                            ? 0.8
-                            : 0,
+                              ? 0.8
+                              : 0,
                       }}
                       transition={{ duration: 0.3, ease: "easeOut" }}
                     />
@@ -355,10 +346,9 @@ export default function Topbar({ user }) {
                         to={item.path}
                         end={item.exact}
                         className={({ isActive }) =>
-                          `flex items-center px-4 py-3 mx-2 rounded-xl text-base font-medium transition-all duration-300 ${
-                            isActive
-                              ? "text-white shadow-lg"
-                              : "text-gray-600 hover:text-gray-900"
+                          `flex items-center px-4 py-3 mx-2 rounded-xl text-base font-medium transition-all duration-300 ${isActive
+                            ? "text-white shadow-lg"
+                            : "text-gray-600 hover:text-gray-900"
                           }`
                         }
                         onClick={() => setMobileMenuOpen(false)}
