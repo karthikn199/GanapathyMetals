@@ -58,7 +58,7 @@ export default function Topbar({ user }) {
             <FiSend className="w-5 h-5 text-indigo-600 transform rotate-45" />
             <div className="ml-2">
               <h1 className="text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                PortFly
+                Ganapathy Metal
               </h1>
               <p className="text-xs font-medium text-gray-500">
                 Powered by{" "}

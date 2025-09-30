@@ -19,6 +19,7 @@ import CertificateOfOriginInput from "./components/layout/certificate/orgin";
 import ExportersMaster from "./components/layout/Masters/exporter";
 import PartyMaster from "./components/layout/Masters/Party";
 import OnboardingForm from "./components/layout/Masters/onBoarding";
+import Invoice from "./components/layout/invoice/invoice";
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<DashboardLayout />}>
-          <Route index element={<DepartmentDashboard />} />
+          {/* <Route index element={<DepartmentDashboard />} /> */}
           <Route path="CardListing" element={<CardListing />} />
           <Route path="certificateListing" element={<CertificateListing />} />
           <Route path="formsListing" element={<FormsListing />} />
@@ -34,8 +35,9 @@ function App() {
           <Route path="EmailSender" element={<BulkEmailSender />} />
           <Route path="settings" element={<WhatsAppSettings />} />
           <Route path="exporter" element={<ExportersMaster />} />
-            <Route path="party" element={<PartyMaster />} />
-            <Route path="onboarding" element={<OnboardingForm />} />
+          <Route path="party" element={<PartyMaster />} />
+          <Route path="onboarding" element={<OnboardingForm />} />
+          <Route path="invoice" element={<Invoice />} />
           {/* <Route path="dashboardPG" element={<DepartmentDashboard />} /> */}
         </Route>
       </Routes>
