@@ -1,5 +1,5 @@
-import { createContext, useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { createContext, useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
@@ -10,18 +10,18 @@ export function AuthProvider({ children }) {
   const login = async (credentials) => {
     // In a real app, you would call your API here
     const mockUser = {
-      id: '1',
-      name: 'Admin User',
+      id: "1",
+      name: "Admin User",
       email: credentials.email,
-      token: 'mock-token',
+      token: "mock-token",
     };
     setUser(mockUser);
-    navigate('/');
+    navigate("/dashboardG");
   };
 
   const logout = () => {
     setUser(null);
-    navigate('/login');
+    navigate("/login");
   };
 
   return (

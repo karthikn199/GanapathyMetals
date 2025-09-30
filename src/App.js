@@ -1,25 +1,21 @@
 import { Route, Routes } from "react-router-dom";
-
-import NewCampaign from "./components/layout/campaigns/CampaignBuilder";
-import CampaignList from "./components/layout/campaigns/CampaignList";
-
 import DashboardLayout from "./components/layout/DashboardLayout";
 
 import Login from "./components/layout/auth/Login";
 import BulkEmailSender from "./components/layout/EmailSender/EmailSender";
 import WhatsAppSettings from "./components/layout/settings/WhatsAppSettings";
-import WhatsAppMessenger from "./components/layout/WhatsAppMessenger/WhatsAppMessenger";
+
 import { AuthProvider } from "./contexts/AuthContext";
 
-import DepartmentDashboard from "./components/layout/dashboardPG";
-import CardListing from "./components/layout/Masters/listing";
 import CertificateListing from "./components/layout/certificate/certificateListing";
-import FormsListing from "./components/layout/Forms/FormsListingPage";
 import CertificateOfOriginInput from "./components/layout/certificate/orgin";
-import ExportersMaster from "./components/layout/Masters/exporter";
-import PartyMaster from "./components/layout/Masters/Party";
-import OnboardingForm from "./components/layout/Masters/onBoarding";
+import FormsListing from "./components/layout/Forms/FormsListingPage";
 import Invoice from "./components/layout/invoice/invoice";
+import DashboardG from "./components/layout/Masters/DashboardG";
+import ExportersMaster from "./components/layout/Masters/exporter";
+import CardListing from "./components/layout/Masters/listing";
+import OnboardingForm from "./components/layout/Masters/onBoarding";
+import PartyMaster from "./components/layout/Masters/Party";
 
 function App() {
   return (
@@ -38,6 +34,7 @@ function App() {
           <Route path="party" element={<PartyMaster />} />
           <Route path="onboarding" element={<OnboardingForm />} />
           <Route path="invoice" element={<Invoice />} />
+          <Route path="dashboardG" element={<DashboardG />} />
           {/* <Route path="dashboardPG" element={<DepartmentDashboard />} /> */}
         </Route>
       </Routes>
