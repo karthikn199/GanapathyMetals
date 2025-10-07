@@ -76,17 +76,89 @@ const Invoice = () => {
                         container.style.boxSizing = 'border-box';
                     });
 
-                    // Make inputs/textarea render as plain text
-                    const fields = clonedDoc.querySelectorAll('input, textarea');
-                    fields.forEach(f => {
-                        f.style.border = 'none';
-                        f.style.background = 'transparent';
-                        f.style.boxShadow = 'none';
-                        f.style.padding = '0';
-                        f.style.margin = '0';
-                        f.style.outline = 'none';
-                        f.style.width = 'auto';
-                        f.style.display = 'inline-block';
+                    // Reduce gaps between form fields in PDF
+                    const formRows = clonedDoc.querySelectorAll('.mb-4, .mb-6, .mb-8');
+                    formRows.forEach(row => {
+                        if (row.classList.contains('mb-8')) {
+                            row.style.marginBottom = '0.5rem';
+                        } else if (row.classList.contains('mb-6')) {
+                            row.style.marginBottom = '0.375rem';
+                        } else if (row.classList.contains('mb-4')) {
+                            row.style.marginBottom = '0.25rem';
+                        }
+                    });
+
+                    // Increase font size and adjust padding for input fields in PDF
+                    const inputFields = clonedDoc.querySelectorAll('input, textarea');
+                    inputFields.forEach(field => {
+                        field.style.padding = '3px 6px';
+                        field.style.fontSize = '18px';
+                        field.style.fontWeight = '500';
+                        field.style.marginTop = '3px';
+                    });
+
+                    // Reduce specific gaps in form sections
+                    const statementRow = clonedDoc.querySelector('.flex.items-center.mb-8');
+                    if (statementRow) {
+                        statementRow.style.marginBottom = '0.5rem';
+                    }
+
+                    const vesselRow = clonedDoc.querySelector('.flex.items-center.mb-4');
+                    if (vesselRow) {
+                        vesselRow.style.marginBottom = '0.25rem';
+                    }
+
+                    const buyerRow = clonedDoc.querySelectorAll('.flex.items-center.mb-4')[1];
+                    if (buyerRow) {
+                        buyerRow.style.marginBottom = '0.25rem';
+                    }
+
+                    const contractRow = clonedDoc.querySelector('.flex.items-center.mb-6');
+                    if (contractRow) {
+                        contractRow.style.marginBottom = '0.375rem';
+                    }
+
+                    // Convert all input fields to read-only spans to ensure values are visible
+                    const textInputs = clonedDoc.querySelectorAll('input[type="text"]');
+                    textInputs.forEach(input => {
+                        const span = document.createElement('span');
+                        // Only show actual value, not placeholder
+                        span.textContent = input.value || '';
+                        span.style.display = 'inline-block';
+                        span.style.width = input.offsetWidth + 'px';
+                        span.style.height = input.offsetHeight + 'px';
+                        span.style.fontFamily = window.getComputedStyle(input).fontFamily;
+                        span.style.fontSize = '14px';
+                        span.style.fontWeight = '500';
+                        span.style.color = window.getComputedStyle(input).color;
+                        span.style.padding = '3px 6px';
+                        span.style.margin = window.getComputedStyle(input).margin;
+
+                        // Replace input with span
+                        input.parentNode.replaceChild(span, input);
+                    });
+
+                    // Convert textarea to div to ensure content is visible
+                    const textareas = clonedDoc.querySelectorAll('textarea');
+                    textareas.forEach(textarea => {
+                        const div = document.createElement('div');
+                        // Only show actual value
+                        div.textContent = textarea.value || '';
+                        div.style.width = textarea.offsetWidth + 'px';
+                        div.style.height = textarea.offsetHeight + 'px';
+                        div.style.fontFamily = window.getComputedStyle(textarea).fontFamily;
+                        div.style.fontSize = '14px';
+                        div.style.fontWeight = '500';
+                        div.style.color = window.getComputedStyle(textarea).color;
+                        div.style.padding = '3px 6px';
+                        div.style.margin = window.getComputedStyle(textarea).margin;
+                        div.style.border = 'none';
+                        div.style.background = 'transparent';
+                        div.style.whiteSpace = 'pre-wrap';
+                        div.style.wordWrap = 'break-word';
+
+                        // Replace textarea with div
+                        textarea.parentNode.replaceChild(div, textarea);
                     });
 
                     // Hide PDF button in clone
@@ -118,15 +190,47 @@ const Invoice = () => {
     return (
         <div className="max-w-5xl mx-auto p-6 bg-white shadow-md">
             {/* PDF Download Button */}
-            <div className="flex justify-end mb-4">
+            <div className="flex justify-end mb-4 space-x-3">
+                {/* PDF Button - Updated Style */}
                 <button
                     onClick={handlePdfDownload}
-                    className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-1 px-4 rounded-lg shadow-md transition duration-200 flex items-center"
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-0.5 px-4 rounded-lg shadow-md transition duration-200 flex items-center"
                 >
-                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    <svg
+                        className="w-4 h-4 mr-2"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                        />
                     </svg>
                     PDF
+                </button>
+
+                {/* Save Button */}
+                <button
+                    // onClick={handleSave}
+                    className="flex items-center bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-medium py-1.5 px-3 rounded-lg shadow-md hover:shadow-lg transition duration-200"
+                >
+                    <svg
+                        className="w-4 h-4 mr-2"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M5 13l4 4L19 7"
+                        />
+                    </svg>
+                    Save
                 </button>
             </div>
 

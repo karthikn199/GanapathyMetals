@@ -72,7 +72,7 @@ export default function Topbar({ user }) {
       color: "from-green-500 to-emerald-500",
     },
     {
-      path: "/invoice",
+      path: "/invoiceListing",
       icon: <FaFileInvoiceDollar size={18} />,
       label: "Invoice",
       color: "from-indigo-500 to-blue-500",

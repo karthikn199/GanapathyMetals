@@ -16,6 +16,7 @@ import ExportersMaster from "./components/layout/Masters/exporter";
 import CardListing from "./components/layout/Masters/listing";
 import OnboardingForm from "./components/layout/Masters/onBoarding";
 import PartyMaster from "./components/layout/Masters/Party";
+import InvoiceListing from "./components/layout/invoice/invoiceListing";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="exporter" element={<ExportersMaster />} />
           <Route path="party" element={<PartyMaster />} />
           <Route path="onboarding" element={<OnboardingForm />} />
+          <Route path="invoiceListing" element={<InvoiceListing />} />
           <Route path="invoice" element={<Invoice />} />
           <Route path="dashboardG" element={<DashboardG />} />
           {/* <Route path="dashboardPG" element={<DepartmentDashboard />} /> */}
