@@ -358,7 +358,7 @@ const FormNine = () => {
                     <button
                         type="button"
                         onClick={addCarrier}
-                        className="px-4 py-1 bg-green-500 text-white text-xs font-bold rounded hover:bg-green-600 transition-colors flex items-center space-x-2"
+                        className="px-4 py-1 bg-green-500 text-white text-sm font-bold rounded hover:bg-green-600 transition-colors flex items-center space-x-2"
                     >
                         <span>+</span>
                         <span>Add</span>
@@ -431,7 +431,7 @@ const FormNine = () => {
                         {/* Left side - Form Title */}
                         <div className="flex-1 ml-3">
                             <div className="flex items-baseline space-x-3">
-                                <h1 className="text-lg font-bold text-white-800">FORM 9</h1>
+                                <h1 className="text-xl font-bold text-white-800">FORM 9</h1>
                                 <p className="text-xs italic mt-1 text-white-500">
                                     [see rules 15 (5) and 16 (5)]
                                 </p>
