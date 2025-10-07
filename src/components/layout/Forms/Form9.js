@@ -1,10 +1,11 @@
 import React, { useState, useRef } from 'react';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { FiDownload, FiRotateCcw, FiSave } from "react-icons/fi";
 
 const FormNine = () => {
     const pdfRef = useRef();
-    
+
     // Main form data
     const [formData, setFormData] = useState({
         // Section 1
@@ -145,9 +146,9 @@ const FormNine = () => {
         }
     };
 
-    const handlePDFDownload= async () => {
+    const handlePDFDownload = async () => {
         const element = pdfRef.current;
-        
+
         if (!element) {
             console.error('PDF reference not found');
             return;
@@ -162,7 +163,7 @@ const FormNine = () => {
             // Hide buttons and interactive elements for PDF
             const buttons = element.querySelectorAll('button');
             const inputs = element.querySelectorAll('input, textarea');
-            
+
             // Store original styles
             const originalStyles = {
                 buttons: Array.from(buttons).map(btn => btn.style.display),
@@ -176,7 +177,7 @@ const FormNine = () => {
             buttons.forEach(btn => {
                 btn.style.display = 'none';
             });
-            
+
             inputs.forEach(input => {
                 input.style.border = 'none';
                 input.style.background = 'transparent';
@@ -195,14 +196,14 @@ const FormNine = () => {
             buttons.forEach((btn, index) => {
                 btn.style.display = originalStyles.buttons[index];
             });
-            
+
             inputs.forEach((input, index) => {
                 input.style.border = originalStyles.inputs[index].border;
                 input.style.background = originalStyles.inputs[index].background;
             });
 
             const imgData = canvas.toDataURL('image/png');
-            
+
             // Use A4 format
             const pdf = new jsPDF({
                 orientation: 'portrait',
@@ -213,7 +214,7 @@ const FormNine = () => {
             const imgWidth = 210; // A4 width in mm
             const pageHeight = 295; // A4 height in mm
             const imgHeight = (canvas.height * imgWidth) / canvas.width;
-            
+
             let heightLeft = imgHeight;
             let position = 0;
 
@@ -237,7 +238,7 @@ const FormNine = () => {
         } catch (error) {
             console.error('Error generating PDF:', error);
             alert('Error generating PDF. Please try again.');
-            
+
             const originalText = document.querySelector('button[onClick*="handleDownloadPDF"] span');
             if (originalText) {
                 originalText.textContent = 'PDF';
@@ -357,7 +358,7 @@ const FormNine = () => {
                     <button
                         type="button"
                         onClick={addCarrier}
-                        className="px-4 py-1 bg-green-500 text-white font-bold rounded hover:bg-green-600 transition-colors flex items-center space-x-2"
+                        className="px-4 py-1 bg-green-500 text-white text-xs font-bold rounded hover:bg-green-600 transition-colors flex items-center space-x-2"
                     >
                         <span>+</span>
                         <span>Add</span>
@@ -425,82 +426,36 @@ const FormNine = () => {
         <div className="min-h-screen bg-gray-50 py-8 px-4">
             <div ref={pdfRef} className="max-w-6xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden relative">
                 {/* Header with Buttons */}
-                <div className="bg-blue-800 text-white p-2">
+                <div className="bg-blue-800 text-white p-2.5">
                     <div className="flex justify-between items-center">
                         {/* Left side - Form Title */}
-                        <div className="flex-1">
-                            <h1 className="text-2xl font-bold mb-1 text-white-800">FORM 9</h1>
-                            <h2 className="text-md font-semibold text-white-700">
+                        <div className="flex-1 ml-3">
+                            <div className="flex items-baseline space-x-3">
+                                <h1 className="text-lg font-bold text-white-800">FORM 9</h1>
+                                <p className="text-xs italic mt-1 text-white-500">
+                                    [see rules 15 (5) and 16 (5)]
+                                </p>
+                            </div>
+                            <h2 className="text-xs font-semibold text-white-700">
                                 TRANSBOUNDARY MOVEMENT -- MOVEMENT DOCUMENT
                             </h2>
-                            <p className="text-xs italic mt-1 text-white-500">
-                                [see rules 15 (5) and 16 (5)]
-                            </p>
                         </div>
 
-                        {/* Right side - Action Buttons */}
                         <div className="flex space-x-2">
-                            {/* PDF Button */}
-                            <button
-                                // onClick={handlePDFDownload}
-                                className="flex items-center space-x-2 px-3 py-1.5 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-lg shadow-md hover:shadow-lg hover:from-blue-600 hover:to-blue-800 transition-all duration-200"
-                            >
-                                <svg
-                                    className="w-4 h-4"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"
-                                    />
-                                </svg>
-                                <span className="font-semibold">PDF</span>
+                            <button className="px-3 py-1.5 bg-blue-50 text-blue-600 rounded text-xs font-medium flex items-center hover:bg-blue-100 transition-colors">
+                                <FiSave className="mr-2" /> Save
                             </button>
-
-                            {/* Save Button */}
                             <button
-                                onClick={handleSave}
-                                className="flex items-center space-x-2 px-3 py-2 bg-gradient-to-r from-green-500 to-green-700 text-white rounded-lg shadow-md hover:shadow-lg hover:from-green-600 hover:to-green-800 transition-all duration-200"
-                            >
-                                <svg
-                                    className="w-4 h-4"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M5 13l4 4L19 7"
-                                    />
-                                </svg>
-                                <span className="font-semibold">Save</span>
-                            </button>
-
-                            {/* Reset Button */}
-                            <button
+                                className="px-3 py-1 bg-green-50 text-green-600 rounded text-xs font-medium flex items-center hover:bg-green-100 transition-colors"
                                 onClick={handleReset}
-                                className="flex items-center space-x-2 px-3 py-2 bg-gradient-to-r from-red-500 to-red-700 text-white rounded-lg shadow-md hover:shadow-lg hover:from-red-600 hover:to-red-800 transition-all duration-200"
                             >
-                                <svg
-                                    className="w-4 h-4"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                                    />
-                                </svg>
-                                <span className="font-semibold">Reset</span>
+                                <FiRotateCcw className="mr-2" /> Reset
+                            </button>
+                            <button
+                                className="px-3 py-1 bg-purple-50 text-purple-600 rounded text-xs font-medium flex items-center hover:bg-purple-100 transition-colors"
+                                onClick={handlePDFDownload}
+                            >
+                                <FiDownload className="mr-2" /> PDF
                             </button>
                         </div>
                     </div>
@@ -678,7 +633,7 @@ const FormNine = () => {
 
                     {/* Importer/Recycler Section */}
                     <div className="mt-6">
-                        <div className="bg-blue-800 text-white p-2.5 font-bold">
+                        <div className="bg-blue-800 text-white p-2 font-bold text-sm">
                             TO BE COMPLETED BY IMPORTER/RECYCLER
                         </div>
 

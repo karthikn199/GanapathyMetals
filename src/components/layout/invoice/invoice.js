@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import logo from '../../../assets/images/Ganapathy_metals_logo.png';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import { FiDownload, FiPrinter, FiSave } from "react-icons/fi";
 
 const Invoice = () => {
     // State for form fields
@@ -189,48 +190,16 @@ const Invoice = () => {
 
     return (
         <div className="max-w-5xl mx-auto p-6 bg-white shadow-md">
-            {/* PDF Download Button */}
-            <div className="flex justify-end mb-4 space-x-3">
-                {/* PDF Button - Updated Style */}
-                <button
-                    onClick={handlePdfDownload}
-                    className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-0.5 px-4 rounded-lg shadow-md transition duration-200 flex items-center"
-                >
-                    <svg
-                        className="w-4 h-4 mr-2"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                        />
-                    </svg>
-                    PDF
-                </button>
 
-                {/* Save Button */}
+            <div className="flex justify-end space-x-2 mb-0">
                 <button
-                    // onClick={handleSave}
-                    className="flex items-center bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-medium py-1.5 px-3 rounded-lg shadow-md hover:shadow-lg transition duration-200"
+                    className="px-4 py-2 bg-blue-50 text-blue-600 rounded text-sm font-medium flex items-center hover:bg-blue-100 transition-colors"
+                    onClick={handlePdfDownload}
                 >
-                    <svg
-                        className="w-4 h-4 mr-2"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M5 13l4 4L19 7"
-                        />
-                    </svg>
-                    Save
+                    <FiSave className="mr-2" /> PDF
+                </button>
+                <button className="px-4 py-2 bg-green-50 text-green-600 rounded text-sm font-medium flex items-center hover:bg-green-100 transition-colors">
+                    <FiPrinter className="mr-2" /> Save
                 </button>
             </div>
 
