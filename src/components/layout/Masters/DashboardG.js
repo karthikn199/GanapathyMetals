@@ -25,7 +25,7 @@ import {
 } from "recharts";
 
 const DashboardG = () => {
-  const [timeRange, setTimeRange] = useState("monthly");
+  const [timeRange, setTimeRange] = useState("Weekly");
   const [loading, setLoading] = useState(true);
 
   // Simulate loading
@@ -55,7 +55,7 @@ const DashboardG = () => {
   const statsCards = [
     {
       title: "Total Revenue",
-      value: "₹8,42,000",
+      value: "RM 92,000",
       change: "+12.5%",
       trend: "up",
       icon: <FiDollarSign className="h-6 w-6" />,
