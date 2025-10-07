@@ -305,7 +305,7 @@ const CertificateOfOriginInput = () => {
         </button>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-6 mb-10">
         {/* Rest of your form remains exactly the same */}
         <div className="border border-gray-300 rounded overflow-hidden">
           {/* Exporter */}
@@ -642,21 +642,6 @@ const CertificateOfOriginInput = () => {
           <div className="border-t border-gray-400 pt-8 w-48 ml-auto">
             <div className="text-sm font-medium">MANAGING DIRECTOR</div>
           </div>
-        </div>
-
-        <div className="flex justify-center space-x-3 pt-4">
-          <button
-            type="button"
-            className="px-4 py-2 border border-gray-300 rounded text-sm font-medium text-gray-700 hover:bg-gray-50"
-          >
-            Cancel
-          </button>
-          <button
-            type="submit"
-            className="px-4 py-2 bg-blue-600 text-white rounded text-sm font-medium hover:bg-blue-700"
-          >
-            Submit Certificate
-          </button>
         </div>
       </form>
     </div>

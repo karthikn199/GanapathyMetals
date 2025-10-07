@@ -7,8 +7,10 @@ import {
   FiShare2,
   FiGrid
 } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
 const FormsListing = () => {
+  const navigate = useNavigate();
   const forms = [
     {
       id: 1,
@@ -32,9 +34,14 @@ const FormsListing = () => {
       icon: <FiFilePlus className="w-4 h-4" />,
       color: "from-green-500 to-emerald-500",
       bgColor: "bg-green-50",
+      path: "/form9",
       count: 23,
     },
   ];
+
+  const handleCardClick = (path) => {
+    navigate(path);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-gray-100 py-6 px-4">
@@ -46,6 +53,7 @@ const FormsListing = () => {
             <div
               key={form.id}
               className="group cursor-pointer"
+              onClick={() => handleCardClick(form.path)}
             >
               <div className="bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200/80 p-4 transition-all duration-300 hover:shadow-md hover:scale-[1.02] hover:border-gray-300 group-hover:bg-white h-full">
                 {/* Icon with Gradient Background */}
@@ -64,7 +72,7 @@ const FormsListing = () => {
                 <h3 className="font-semibold text-gray-900 text-sm mb-1 group-hover:text-gray-700 transition-colors line-clamp-1">
                   {form.name}
                 </h3>
-             
+
 
                 {/* Action Buttons */}
                 <div className="flex items-center justify-between">

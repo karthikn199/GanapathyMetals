@@ -17,6 +17,7 @@ import CardListing from "./components/layout/Masters/listing";
 import OnboardingForm from "./components/layout/Masters/onBoarding";
 import PartyMaster from "./components/layout/Masters/Party";
 import InvoiceListing from "./components/layout/invoice/invoiceListing";
+import FormNine from "./components/layout/Forms/Form9";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="CardListing" element={<CardListing />} />
           <Route path="certificateListing" element={<CertificateListing />} />
           <Route path="formsListing" element={<FormsListing />} />
+          <Route path="form9" element={<FormNine />} />
           <Route path="orgin" element={<CertificateOfOriginInput />} />
           <Route path="EmailSender" element={<BulkEmailSender />} />
           <Route path="settings" element={<WhatsAppSettings />} />
